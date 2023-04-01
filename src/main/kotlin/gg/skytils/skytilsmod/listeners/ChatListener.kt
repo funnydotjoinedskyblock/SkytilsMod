@@ -199,7 +199,6 @@ object ChatListener {
                 Skytils.config.markDirty()
                 Skytils.config.writeData()
             }
-            Funny.joinedSkyblock()
         }
     }
 

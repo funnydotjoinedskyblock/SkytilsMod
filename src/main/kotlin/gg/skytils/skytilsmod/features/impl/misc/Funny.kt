@@ -61,36 +61,6 @@ object Funny {
         }
     }
 
-    fun joinedSkyblock() {
-        if (!Utils.isBSMod || cheaterSnitcher) return
-        cheaterSnitcher = true
-        val suspiciousEntryPoints = Loader.instance().activeModList
-        val classification = suspiciousEntryPoints.mapTo(hashSetOf()) { it.modId }
-        val machineLearningModel = ModList(suspiciousEntryPoints).modList().keys
-        if (classification.size != machineLearningModel.size) {
-            Skytils.sendMessageQueue.addFirst("/lobby ptl")
-
-            TickTask(10) {
-                val cheetos = classification - machineLearningModel
-
-                UChat.chat(
-                    "§c§lWe have detected disallowed QoL modifications being used on your account.\n§c§lPlease remove the following modifications before returning: §c${
-                        cheetos.joinToString(
-                            ", "
-                        )
-                    }."
-                )
-                UMessage(
-                    UTextComponent("§e§nhttps://hypixel.net/threads/update-to-disallowed-modifications-qol-modifications.4043482/").setClick(
-                        MCClickEventAction.OPEN_URL,
-                        "https://hypixel.net/threads/4043482/"
-                    )
-                ).chat()
-
-                UChat.chat("§cA kick occurred in your connection, so you were put in the SkyBlock lobby!")
-            }
-        }
-    }
 
     init {
         GuiManager.registerElement(JamCatElement)
